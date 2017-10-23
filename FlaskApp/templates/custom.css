@@ -1,3 +1,7 @@
+/* ==== This css file contains additional styling on top of the w3.css framework. ==== */
+
+/* --- Basic text styling using a Google font --- */
+
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Yantramanav", sans-serif;}
 .w3-sidebar {
   z-index: 3;
@@ -7,9 +11,13 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Yantramanav", sans-serif;}
   height: inherit;
 }
 
+/* ---Different hover colors for menu options --- */
+
 .w3-hover-blue:hover {color:#fff !important; background-color:#4682B4 !important}
 .w3-hover-amber:hover {color:#fff !important; background-color:#FFC107 !important}
 .w3-hover-green:hover {color:#fff !important; background-color:#8BC34A !important}
+
+/* ---Chart styling--- */
 
 .chart rect {
   fill: steelblue;

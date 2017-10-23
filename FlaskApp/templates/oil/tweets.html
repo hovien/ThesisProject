@@ -1,7 +1,14 @@
 {% extends "frame.html" %}
+
+<!-- This file is a child of frame.html. 
+It contains the bar chart of top ten tweeting users about oil. -->
+
+<!-- Calling the sidemenu as-is, because the one in frame.html is the one with oil. -->
 {% block sidemenu %}
 {{ super() }}
 {% endblock %}
+
+<!-- Inserting the table of tweets to the page  -->
   {% block content %}
   <div class="w3-row w3-padding-64"">
     <div class="w3-col m12 l10 w3-container">
@@ -25,5 +32,7 @@
     </div>
   </div>
   {% endblock %}
+
+<!-- Skipping the javascript, because there aren't any visualizations here  -->
 {% block d3 %}
 {% endblock %}
