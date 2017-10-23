@@ -54,9 +54,7 @@ To use the code it can simply be cloned from here.
 
 [Flask](http://flask.pocoo.org/) - web framework
 
-
 [MySQL](https://www.mysql.com/) - database
-
 
 [d3.js](https://d3js.org/) - javascript library for visualizations
 
@@ -66,9 +64,7 @@ To use the code it can simply be cloned from here.
 
 The code is largely based on two tutorials:
 
-
 [Flask & MySQL Tutorial](https://pythonprogramming.net/practical-flask-introduction/)
-
 
 [D3.js Bar Chart Tutorial](https://bost.ocks.org/mike/bar/3/) 
 
