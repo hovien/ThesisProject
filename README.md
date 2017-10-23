@@ -1,10 +1,14 @@
-## Synopsis
+## Flask, d3.js & MySQL project
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+This is a small demo file of a thesis project from HAAGA-Helia University of Applied Sciences. It uses Flask to extract data from a MySQL database and view it on a website. A few simple bar charts are created from the data with the d3.js Javascript library. 
 
 ## Code Example
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
 
 ## Motivation
 
