@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<!-- This page is the basis of the whole application. It acts as a parent of other pages.
+It contatains the head, the menu bars and the javascript for the visalizations. 
+There are only minor differences between the pages, which are handled by the Jinja2 blocks.
+The blocks are marked with {% block xyz %}, xyz being the custom name of the block. 
+This enables changing the content inside the block in the child pages. 
+
+This code is heavily based on the w3.css template found here: https://www.w3schools.com/w3css/tryw3css_templates_analytics.htm -->
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Twitter Watch</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-dark-grey.css">
+<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yantramanav">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+</head>
+
+<body>
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-left w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="/" class="w3-bar-item w3-button w3-hover-theme">
+      <i class="fa fa-twitter" style="font-size:20px;letter-spacing:-18px;color:#1DA1F2"></i>
+      <i class="fa fa-eye" style="font-size:17px;color:white"></i>&nbsptwitter watch
+    </a>
+    <a href="/oil/" class="w3-bar-item w3-button w3-hide-small w3-hover-blue w3-right">Oil</a>
+    <a href="/energy/" class="w3-bar-item w3-button w3-hide-small w3-hover-green w3-right">Energy</a>
+    <a href="/construction/" class="w3-bar-item w3-button w3-hide-small w3-hover-amber w3-right">Construction</a>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l4 w3-animate-left" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  {% block sidemenu %}
+  <h4 class="w3-bar-item"><b>Oil</b></h4>
+  <a class="w3-bar-item w3-button w3-hover-blue" href="/oil/users"><i class="fa fa-users fa-fw"></i> Top 10 tweeting users</a>
+  <a class="w3-bar-item w3-button w3-hover-blue" href="/oil/cities"><i class="fa fa-building fa-fw"></i> Top 10 origin cities</a>
+  <a class="w3-bar-item w3-button w3-hover-blue" href="/oil/tweets"><i class="fa fa-list fa-fw"></i> Tweets</a>
+  {% endblock %}
+</nav>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main w3-padding-64" style="margin-left:250px">
+    {% block content %}
+    {% endblock %}
+</div>
+{% block d3 %}
+<script type=text/javascript>
+
+var top_users = {{data|tojson|safe}}
+
+var margin = {top: 20, right: 30, bottom: 70, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var y = d3.scale.linear()
+    .domain([0, d3.max(top_users, function(d) { return d.count; }) ])
+    .range([height, 0]);
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(5);
+
+var x = d3.scale.ordinal()
+    .domain(top_users.map(function(d) { return d.user; }))
+    .rangeRoundBands([0, width], .1);
+
+console.log(top_users.map(function(d) { return d.user; }));
+
+var xAxis = d3.svg.axis()
+    .scale(x);
+
+var chart = d3.select(".chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var barWidth = width / top_users.length;
+
+var bar = chart.selectAll("g")
+    .data(top_users)
+  .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; });
+
+chart.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+chart.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+  .selectAll("text")
+    .attr("y", 0)
+    .attr("x", 9)
+    .attr("dy", ".35em")
+    .attr("transform", "rotate(90)")
+    .style("text-anchor", "start");
+
+bar.append("rect")
+    .attr("class", "bar")
+    .attr("y", function(d) { return y(d.count); })
+    .attr("height", function(d) { return height - y(d.count); })
+    .attr("width", barWidth - 1);
+
+
+</script>
+{% endblock %}
+</body>
+
+</html>

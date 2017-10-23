@@ -1,0 +1,38 @@
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Yantramanav", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+
+.w3-hover-blue:hover {color:#fff !important; background-color:#4682B4 !important}
+.w3-hover-amber:hover {color:#fff !important; background-color:#FFC107 !important}
+.w3-hover-green:hover {color:#fff !important; background-color:#8BC34A !important}
+
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.axis text {
+  font: 10px sans-serif;
+  fill: #000;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
