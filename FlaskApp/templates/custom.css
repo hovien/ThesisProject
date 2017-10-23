@@ -17,7 +17,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Yantramanav", sans-serif;}
 .w3-hover-amber:hover {color:#fff !important; background-color:#FFC107 !important}
 .w3-hover-green:hover {color:#fff !important; background-color:#8BC34A !important}
 
-/* ---Chart styling--- */
+/* ---Chart styling, based on this d3.js tutorial: https://bost.ocks.org/mike/bar/ --- */
 
 .chart rect {
   fill: steelblue;
