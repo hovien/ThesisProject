@@ -2,35 +2,67 @@
 
 This is a small demo file of a thesis project from HAAGA-Helia University of Applied Sciences. It uses Flask to extract data from a MySQL database and view it on a website. A few simple bar charts are created from the data with the d3.js Javascript library. 
 
-## Code Example
+## Code Snippets
 
-```ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
+The python application queries the MySQL database and passes the data to the Jinja2 template.
+
+```python
+def top_users(topic):
+    try:
+        cursor, conn = connection()
+    except Exception as e:
+        return(str(e))
+    query = ('SELECT user, COUNT(*) FROM '+ topic + ' GROUP BY user ORDER BY COUNT(*) DESC LIMIT 10;')
+    cursor.execute(query)
+    tup_data = cursor.fetchall()
+    data_out = convert_to_json(tup_data)
+    return data_out
+
+@app.route('/oil/users/')
+def oil_users():
+    data = top_users('oil')
+    return render_template("oil/users.html", data=data)
+```
+
+The data is interpreted as JSON by Jinja2 and a bar chart is created from it with d3.js.
+
+```javascript
+
+var top_users = {{data|tojson|safe}}
+
+var chart = d3.select(".chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var bar = chart.selectAll("g")
+    .data(top_users)
+  .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; });
 ```
 
 ## Motivation
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+The project was created as a proof of concept for the thesis. The aim was to prove the feasibility of building a market intelligence solution using only open source tools.
 
 ## Installation
 
-Provide code examples and explanations of how to get the project.
+To use the code it can simply be cloned from here.
 
-## API Reference
+## Built With
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+[Flask](http://flask.pocoo.org/) - web framework
+[MySQL](https://www.mysql.com/) - database
+[d3.js](https://d3js.org/) - javascript library for visualizations
 
-## Tests
+## Tutorials
 
-Describe and show how to run the tests with code examples.
-
-## Contributors
-
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+The code is largely based on two tutorials:
+[Flask & MySQL Tutorial](https://pythonprogramming.net/practical-flask-introduction/)
+[D3.js Bar Chart Tutorial](https://bost.ocks.org/mike/bar/3/) 
 
 ## License
 
-A short snippet describing the license (MIT, Apache, etc.)
+As the tutorials it is based on, this code is published under [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
 
