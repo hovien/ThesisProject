@@ -61,7 +61,7 @@ def homepage():
 @app.route('/oil/users/')
 def oil_users():
     data = top_users('oil')
-    return render_template("oil/users_vertical.html", data=data)
+    return render_template("oil/users.html", data=data)
 @app.route('/oil/cities/')
 def oil_cities():
     data = top_cities('oil')
