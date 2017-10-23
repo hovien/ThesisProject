@@ -73,8 +73,7 @@ def oil_tweets():
 @app.route('/oil/')
 def oil():
     data = top_users('oil')
-    return render_template("oil/users_vertical.html", data=data)
-#    return render_template("oil.html")
+    return render_template("oil/users.html", data=data)
 
 #  TOPIC: Construction
 
@@ -82,7 +81,6 @@ def oil():
 def construction():
     data = top_users('construction')
     return render_template("construction/users.html", data=data)
-#    return render_template("construction.html")
 @app.route('/construction/users/')
 def construction_users():
     data = top_users('construction')
@@ -102,7 +100,6 @@ def construction_tweets():
 def energy():
     data = top_users('energy')
     return render_template("energy/users.html", data=data)
-#    return render_template("energy.html")
 @app.route('/energy/users/')
 def energy_users():
     data = top_users('energy')
