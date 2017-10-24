@@ -3,8 +3,8 @@
 <!-- This page is the basis of the whole application. It acts as a parent of other pages.
 It contatains the head, the menu bars and the javascript for the visalizations. 
 There are only minor differences between the pages, which are handled by the Jinja2 blocks.
-The blocks are marked with {% block xyz %}, xyz being the custom name of the block. 
-This enables changing the content inside the block in the child pages. 
+The blocks are marked with curly braces and percentage signs. 
+They enable changing the content inside the block in the child pages. 
 
 This code is largely based on the w3.css template found here: https://www.w3schools.com/w3css/tryw3css_templates_analytics.htm -->
 
@@ -15,7 +15,7 @@ This code is largely based on the w3.css template found here: https://www.w3scho
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-dark-grey.css">
-<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yantramanav">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
@@ -55,6 +55,9 @@ This code is largely based on the w3.css template found here: https://www.w3scho
 <div class="w3-main w3-padding-64" style="margin-left:250px">
     {% block content %}
     {% endblock %}
+</div>
+<div class="footer">
+<p>Created using a <a href="https://www.w3schools.com/w3css/tryw3css_templates_analytics.htm">w3.css template</a></p>
 </div>
 <!-- Javascript for d3.js bar chart visualizations based on this tutorial: https://bost.ocks.org/mike/bar/ -->
 {% block d3 %}

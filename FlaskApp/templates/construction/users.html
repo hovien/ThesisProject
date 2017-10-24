@@ -6,9 +6,9 @@ It contains the bar chart of top ten tweeting users about oil. -->
 <!-- Overwriting the sidemenu, because the one in frame.html is the one for oil. -->
 {% block sidemenu %}
   <h4 class="w3-bar-item"><b>Construction</b></h4>
-  <a class="w3-bar-item w3-button w3-hover-theme" href="/construction/users"><i class="fa fa-users fa-fw"></i> Top 10 tweeting users</a>
-  <a class="w3-bar-item w3-button w3-hover-theme" href="/construction/cities"><i class="fa fa-building fa-fw"></i> Top 10 origin cities</a>
-  <a class="w3-bar-item w3-button w3-hover-theme" href="/construction/tweets"><i class="fa fa-list fa-fw"></i> Tweets</a>
+  <a class="w3-bar-item w3-button w3-hover-amber" href="/construction/users"><i class="fa fa-users fa-fw"></i> Top 10 tweeting users</a>
+  <a class="w3-bar-item w3-button w3-hover-amber" href="/construction/cities"><i class="fa fa-building fa-fw"></i> Top 10 origin cities</a>
+  <a class="w3-bar-item w3-button w3-hover-amber" href="/construction/tweets"><i class="fa fa-list fa-fw"></i> Tweets</a>
 {% endblock %}
 
 <!-- Inserting the title and the chart to the page  -->
@@ -16,7 +16,7 @@ It contains the bar chart of top ten tweeting users about oil. -->
   <div class="w3-container">
     <h3>Top ten users about construction</h3>
 
-    <svg class="chart" rect="fill:#FFC107" ></svg>
+    <svg class="chart chart-yellow" ></svg>
   </div>
   {% endblock %}
 

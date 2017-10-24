@@ -54,7 +54,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return render_template("main.html")
+    data = top_users('construction')
+    return render_template("construction/users.html", data=data)
 
 #  TOPIC: Oil
 

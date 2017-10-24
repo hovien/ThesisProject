@@ -17,10 +17,18 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Yantramanav", sans-serif;}
 .w3-hover-amber:hover {color:#fff !important; background-color:#FFC107 !important}
 .w3-hover-green:hover {color:#fff !important; background-color:#8BC34A !important}
 
-/* ---Chart styling, based on this d3.js tutorial: https://bost.ocks.org/mike/bar/ --- */
+/* ---Chart styling, based on this d3.js tutorial: bost.ocks.org/mike/bar --- */
 
-.chart rect {
+.chart-blue rect {
   fill: steelblue;
+}
+
+.chart-yellow rect {
+  fill: #FFC107;
+}
+
+.chart-green rect {
+  fill: #8BC34A;
 }
 
 .chart text {
@@ -43,4 +51,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Yantramanav", sans-serif;}
 
 .x.axis path {
   display: none;
+}
+
+/* ---Footer styling--- */
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:#DFDFDF;
+    color:#000;
+    text-align: center;
 }

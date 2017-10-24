@@ -2,8 +2,8 @@ import MySQLdb
 
 def connection():
     conn = MySQLdb.connect(host="localhost",
-                           user = "root",
-                           passwd = "S1a9m0i487Sql",
+                           user = "flask",
+                           passwd = "F2l0a1s7k",
                            db = "Tweets")
     c = conn.cursor()
 
